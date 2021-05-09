@@ -32,12 +32,14 @@
 	const onpointerenter = ({ target }) => {
 		const { object, game } = target;
 		/* three-elements bug here! */
+		document.body.style.cursor = 'pointer';
 		object.material.color.set(hoverColor);
 		game.requestFrame();
 	};
 
 	const onpointerleave = ({ target }) => {
 		const { object, game } = target;
+		document.body.style.cursor = 'default';
 		object.material.color.set(selected ? selectionColor : color);
 		game.requestFrame();
 	};
