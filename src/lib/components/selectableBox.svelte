@@ -23,7 +23,7 @@
 	 * If you pass an ID like '#geometry', it reuses the geometry instead of creatting a new one
 	 * @type {'box' | string}
 	 */
-	export let geometry = 'box';
+	export let geometry;
 	/**
 	 * @type {bool}
 	 */
@@ -50,9 +50,14 @@
 		selected = !selected;
 		game.requestFrame();
 	};
+
+	let props = {};
+	if (geometry) {
+		props['ref:geometry'] = geometry;
+	}
 </script>
 
-<three-mesh {geometry} {position} {scale} {onpointerenter} {onpointerleave} {onpointerdown}>
+<three-mesh {position} {scale} {onpointerenter} {onpointerleave} {onpointerdown}>
 	<!-- Only adds geometry if dont pass an ID to an reusable geometry -->
 	{#if geometry === 'box' || geometry === undefined}
 		<three-box-buffer-geometry />
