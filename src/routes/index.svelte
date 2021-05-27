@@ -2,10 +2,12 @@
 	import { onMount } from 'svelte';
 	import { Box3, Sphere } from 'three';
 	import SelectableElement from '$lib/components/selectableBox.svelte';
+	import { browser } from '$app/env';
 
-	let loaded;
 	onMount(async () => {
-		loaded = true;
+		if (browser) {
+			const threeElements = import('three-elements');
+		}
 	});
 
 	let game;
@@ -33,7 +35,7 @@
 		for (const object of selection) box.expandByObject(object);
 		const sphere = box.getBoundingSphere(new Sphere());
 
-		let distance = 1;
+		let distance = sphere.radius;
 
 		if (camera.isPerspectiveCamera) {
 			// Perspective camera
@@ -84,7 +86,7 @@
 </script>
 
 <div class="viewport">
-	{#if loaded}
+	{#if browser}
 		<three-game bind:this={game}>
 			<three-scene bind:this={scene} background-color="#000" {...seceneProps}>
 				<three-perspective-camera
