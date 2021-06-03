@@ -1,12 +1,15 @@
 <script>
 	import { onMount } from 'svelte';
 	import { Box3, Sphere } from 'three';
-	import SelectableElement from '$lib/components/selectableBox.svelte';
 	import { browser } from '$app/env';
+
+	import SelectableElement from '$lib/components/SelectableBox.svelte';
+	import TextElement from '$lib/components/TextElement.svelte';
 
 	onMount(async () => {
 		if (browser) {
-			const threeElements = import('three-elements');
+			await import('three-elements');
+			await import('@three-elements/text');
 		}
 	});
 
@@ -116,6 +119,9 @@
 						scale="10"
 					/>
 				{/each}
+
+				<!-- Text test -->
+				<TextElement />
 
 				<three-ambient-light intensity="0.2" />
 				<three-directional-light intensity="0.8" position="10, 10, 50" />

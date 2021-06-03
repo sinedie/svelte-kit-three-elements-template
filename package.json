@@ -17,6 +17,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@three-elements/text": "^0.4.0-alpha.6",
 		"three": "^0.128.0",
 		"three-elements": "^0.4.0-alpha.14"
 	}
